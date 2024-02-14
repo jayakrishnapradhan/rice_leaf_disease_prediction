@@ -31,12 +31,20 @@ from sklearn.model_selection import train_test_split
 from keras.preprocessing import image
 from keras.applications.mobilenet import preprocess_input
 from keras.models import load_model
+from pydrive.drive import GoogleDrive
+
+# File ID from the shared Google Drive link
+file_id = '16Q9o7B1-A6qZsz-3HBeFEgswQbcraJ6R'
+
+# Download the h5 model file
+drive = GoogleDrive(None)
+file = drive.CreateFile({'id': file_id})
+file.GetContentFile(os.path.join(BASE_DIR, "rice_disease_prediction_model_accuracy_7500.h5"))
 
 
 # Create your views here.
 def predict(request):
-    #model = load_model(os.path.join(BASE_DIR, "rice_disease_prediction_model_accuracy_7500.h5"))
-    model = load_model("https://drive.google.com/u/0/uc?id=16Q9o7B1-A6qZsz-3HBeFEgswQbcraJ6R&export=download")
+    model = load_model(os.path.join(BASE_DIR, "rice_disease_prediction_model_accuracy_7500.h5"))
 
     # Load the image and preprocess it
     image_path = request.session["uploaded_image"]
