@@ -35,7 +35,8 @@ from keras.models import load_model
 
 # Create your views here.
 def predict(request):
-    model = load_model(os.path.join(BASE_DIR, "rice_disease_prediction_model_accuracy_7500.h5"))
+    #model = load_model(os.path.join(BASE_DIR, "rice_disease_prediction_model_accuracy_7500.h5"))
+    model = load_model("https://drive.google.com/u/0/uc?id=16Q9o7B1-A6qZsz-3HBeFEgswQbcraJ6R&export=download")
 
     # Load the image and preprocess it
     image_path = request.session["uploaded_image"]
